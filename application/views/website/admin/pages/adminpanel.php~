@@ -1,0 +1,57 @@
+<?php $this->load->view('admin/template/head'); ?>
+
+
+<body>
+
+	<?php $this->load->view('admin/template/header'); ?>
+	<?php $this->load->view('admin/template/sidebar'); ?>
+	
+	<section id="main" class="column">
+				
+		<div class="clear"></div>
+		<?php
+		if ($pages == 'Dashboard')
+		{
+			$this->load->view('admin/template/content/messages');
+		}
+		if ($pages == 'Add News')
+		{
+			$this->load->view('admin/template/content/add_news');
+		}
+		if ($pages == 'Add Page')
+		{
+			$this->load->view('admin/template/content/add_news');
+		}
+		if ($pages == 'User Manager')
+		{
+			$this->load->view('admin/template/content/add_user');
+		}
+		if ($pages == 'News')
+		{
+			$this->load->view('admin/template/content/content_manager');
+		}
+		if ($pages == 'Pages')
+		{
+			$this->load->view('admin/template/content/page');
+		}
+		if ($pages == 'Categories')
+		{
+			$this->load->view('admin/template/content/categories');
+		}
+		if ($pages == 'Profile')
+		{
+			$this->load->view('admin/template/content/profile');
+		}
+		if ($pages == 'File Manager')
+		{
+			$this->load->view('admin/template/content/file_manager');
+		}
+		?>
+		
+		<div class="spacer"></div>
+	</section>
+
+
+</body>
+
+</html>

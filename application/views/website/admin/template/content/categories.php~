@@ -1,0 +1,63 @@
+<article class="module width_half">
+		<header><h3 class="tabs_involved"><?php echo $konten; ?> Manager</h3>
+		<ul class="tabs">
+   			<li><a href="#tab1"><?php echo $konten; ?></a></li>
+		</ul>
+		</header>
+
+		<div class="tab_container">
+			<div id="tab1" class="tab_content">
+			<table class="tablesorter" cellspacing="0"> 
+			<thead> 
+				<tr> 
+    				<th><?php echo $konten?></th> 
+    				<th style="width:17%"><center>Actions</center></th> 
+				</tr> 
+			</thead> 
+			<?php foreach ($isi as $row_isi) :
+			{ ?>
+			<tbody> 
+				<tr> 
+					<td><?php echo $row_isi['category'];?></td>
+    				<td><center><? echo anchor('system/delete_category/'.$row_isi['id'],img(array('src'=> base_url().'wp-admin/images/icn_trash.png')));?></center></td> 
+				</tr>   
+			</tbody> 
+			<?php } endforeach;?>
+			</table>
+			</div><!-- end of #tab1 -->
+						
+		</div><!-- end of .tab_container -->
+		
+		</article><!-- end of content manager article -->
+		<?php echo form_open('system/add_kategori'); ?>
+		<article class="module width_half">
+			<header><h3>Messages</h3></header>
+			<div class="module_content">
+						<fieldset>
+						<table>
+							<tr><label>Add New Category </label></tr>
+							<tr><?php $category = array(
+									  'name'	=> 'category',
+									  'id'		=> 'category',
+									  'style'	=> 'width:86%'
+									); 
+								echo form_input($category);?></tr>
+						</table><div class="clear"></div>
+						</fieldset>
+				</div>
+			<footer>
+				<div class="submit_link">
+					<?php $add = array(
+						  'name'	=> 'add',
+						  'id'		=> 'add',
+						  'value'	=> 'Add',
+						  'class'	=> 'alt_btn'
+						);
+					echo form_submit($add);?>
+				</div>
+			</footer>
+		
+		<div class="clear"></div>
+		
+		</article><!-- end of messages article -->
+		</form>

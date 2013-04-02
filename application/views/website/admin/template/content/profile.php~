@@ -1,0 +1,97 @@
+<article class="module width_quarter">
+		<header><h3 class="tabs_involved">Profile Manager</h3>
+		</header>
+
+		<div class="tab_container">
+		<?php 
+		$datestring = "%Y" ;
+		$time = time();
+		$tanggal = mdate($datestring, $time);
+		foreach ($user as $row_user) :
+			{ 
+			if ($row_user['avatar'] != NULL) 
+				{ ?>
+					<center><?php echo img(array('src'=>base_url().'wp-content/uploads/'.$tanggal.'/'.$row_user['avatar'], 'height'=>'250'));?></center>
+				<?php } 
+			else
+				{ ?>
+					<center><?php echo img(base_url('wp-admin/images/gravatar.jpg'));?></center>
+			<?php }
+			}
+		endforeach;?>
+						
+		</div><!-- end of .tab_container -->
+		
+		</article><!-- end of content manager article -->
+		
+		<article class="module width_3_quarter">
+			<header><h3>Messages</h3></header>
+			<?php
+			if ($edit == FALSE) {
+				echo form_open('system/edit_profile');	
+			}
+			foreach ($user as $row_user) :
+			{
+				if ($edit == TRUE) {
+				echo form_open_multipart('system/update_profile');	?>
+				<div class="module_content">
+							<fieldset>
+							<table>
+								<tr><td><label>ID User </label></td><td>:</td>
+								<td><b><?php echo $row_user['id']; ?></td></tr>
+								<tr><td><label>Username </label></td><td>:</td><td><b><?php echo $row_user['username'];?></td><tr>
+								<td><label>Password </label></td><td>:</td><td><?php 
+								$password	= array(
+									  'id'		=> 'Password',
+									  'name'	=> 'password',
+									  'style'	=> 'width:90%'
+								);
+								echo form_password($password);?></td><td><center><?php echo form_error('password'); ?></td>
+								<tr><td><label>Confirm Password </label></td><td>:</td><td><?php 
+								$conf_pass	= array(
+									  'id'		=> 'Password Confirmation',
+									  'name'	=> 'conf_password',
+									  'style'	=> 'width:90%'
+								);
+								echo form_password($conf_pass);?></td><td><center><?php echo form_error('conf_password'); ?></td></tr>
+								<tr><td><label>Email </label></td><td>:</td><td><b><?php echo $row_user['email']; ?></td></tr>
+								<tr><td><label>Foto</label></td><td>:</td>
+								<td><?php $foto = array(
+								  'name'    => 'foto',
+								  'style'	=> 'margin-left:2%',
+								);
+								echo form_upload($foto);?></td> 
+								<tr><td colspan ="3"><div style = "margin-left:2%"><b>supported files gif | jpg | jpeg | png (maks 1024KB | 250x250 pixels)</div></td></tr>
+							</table>
+							</fieldset><div class="clear"></div>
+				</div>
+				<?php } 
+				else
+				{ ?>
+				<div class="module_content">
+							<fieldset>
+							<table>
+								<tr><td><label>ID User </label></td><td>:</td><td><?php echo $row_user['id']; ?></td></tr>
+								<tr><td><label>Username </label></td><td>:</td><td><?php echo $row_user['username']; ?></td>
+								<tr><td><label>Email </label></td><td>:</td><td><?php echo $row_user['email']; ?></td>
+							</table>
+							</fieldset><div class="clear"></div>
+					</div>
+				<?php } 
+			} endforeach;?>
+			<footer>
+			<?php if ($edit == FALSE) { ?>
+				<div class="submit_link">
+					<input type="submit" value="Edit" class="alt_btn">
+				</div>
+			<?php } 
+			else { ?>
+			<div class="submit_link">
+					<input type="submit" value="Update" class="alt_btn">
+				</div>
+			<?php } ?>
+			</footer>
+		</form>
+		</article><!-- end of messages article -->
+		
+		</article><!-- end of content manager article -->
