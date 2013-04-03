@@ -91,10 +91,10 @@
 					<tr>
                         <td><center><?php echo $number; ?></center></td>
 						<td><center><?php echo $row_pegawai['peg_nipp']; ?></center></td>
-						<td><?php echo $row_pegawai['peg_nama']; ?></td>
-						<td><?php echo $row_pegawai['peg_tmpt_lahir']; ?></td>
+						<td><?php echo strtoupper($row_pegawai['peg_nama']); ?></td>
+						<td><?php echo strtoupper($row_pegawai['peg_tmpt_lahir']); ?></td>
 						<td><center><?php echo $tgl_lahir; ?></center></td>
-						<td><center><?php echo $kelamin; ?></center></td>
+						<td><center><?php echo strtoupper($kelamin); ?></center></td>
 						<td><center><?php echo $gol_darah; ?></center></td>
 						<td><center><?php echo $detail ?></center></td>
                     </tr> <?php
