@@ -39,6 +39,7 @@ class diklat extends Application {
 		#data preparing
 		$data['pegawai'] = $this->pendidikan->get_data_pegawai_with_unit($config['per_page'],$page);
 		$data['page'] = 'Pegawai';
+		$data['page_diklat'] = 'yes';
 		#calling view
 		$this->load->view('diklat/index',$data);
 	}
@@ -48,6 +49,7 @@ class diklat extends Application {
 		$data['pegawai'] = $this->pendidikan->get_data_pegawai_by_nipp($nipp);
 		$data['list_stkp'] = $this->pendidikan->get_list_stkp();
 		$data['page'] = 'Add STKP';
+		$data['page_diklat'] = 'yes';
 		#calling view
 		$this->load->view('diklat/index',$data);
 	}
@@ -94,6 +96,8 @@ class diklat extends Application {
 		$data['list_unit'] = $this->pendidikan->get_list_unit();
 		$data['pegawai_with_stkp_and_unit'] = $this->pendidikan->get_data_stkp_with_unit_and_name($config['per_page'],$page);
 		$data['page'] = 'Report STKP';
+		$data['page_diklat'] = 'yes';
+		$data['view_stkp'] = 'class="this"';
 		
 		$this->load->view('diklat/index',$data);
 	}
@@ -112,6 +116,8 @@ class diklat extends Application {
 		$data['pegawai_with_stkp_and_unit'] = $this->pendidikan->get_data_nstkp_with_unit_and_name($config['per_page'],$page);
 		$data['page'] = 'Report Non STKP';
 		$data['view_input_nstkp'] = 'class="this"';
+		$data['page_diklat'] = 'yes';
+		$data['view_nstkp'] = 'class="this"';
 		
 		$this->load->view('diklat/index',$data);
 	}
@@ -169,6 +175,8 @@ class diklat extends Application {
 		$data['pegawai_with_stkp_and_unit'] = $this->pendidikan->search_data_stkp_with_unit_and_name($config['per_page'],$page, $stkp, $unit);
 		
 		$data['page'] = 'Report STKP';
+		$data['page_diklat'] = 'yes';
+		$data['view_stkp'] = 'class="this"';
 				
 		$this->load->view('diklat/index',$data);
 	}
@@ -221,11 +229,12 @@ class diklat extends Application {
 		$this->pagination->initialize($config);
 		$page = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
 		
-		$data['view_input_nstkp'] = 'class="this"';
+		$data['view_nstkp'] = 'class="this"';
 		$data['list_unit'] = $this->pendidikan->get_list_unit();
 		$data['pegawai_with_stkp_and_unit'] = $this->pendidikan->search_data_nstkp_with_unit_and_name($config['per_page'],$page, $stkp, $unit);
 		
 		$data['page'] = 'Report Non STKP';
+		$data['page_diklat'] = 'yes';
 		
 		//print_r($config);
 		$this->load->view('diklat/index',$data);
@@ -252,6 +261,7 @@ class diklat extends Application {
 		$data['pegawai'] = $this->pendidikan->search_data_pegawai($config['per_page'], $page, $search);
 		$data['list_unit'] = $this->pendidikan->get_list_unit();
 		$data['page'] = 'Search Result';
+		$data['page_diklat'] = 'yes';
 		
 		//print_r($data);
 		//print_r($search);
@@ -265,6 +275,7 @@ class diklat extends Application {
 		{
 			$data['page'] = 'STKP Bulanan';
 			$data['view_input_stkp'] = 'class="this"';
+			$data['page_diklat'] = 'yes';
 			$this->load->view('diklat/index', $data);
 		} else 
 		if ($this->uri->segment(3) === 'part_two' )
@@ -276,6 +287,7 @@ class diklat extends Application {
 			$data['license'] = $this->input->post('license');
 			$data['lp'] = $this->input->post('lp');
 			$data['view_input_stkp'] = 'class="this"';
+			$data['page_diklat'] = 'yes';
 			
 			$this->load->view('diklat/index', $data);
 		}
@@ -306,6 +318,7 @@ class diklat extends Application {
 		$data['nstkp'] = $this->pendidikan->get_nilai_non_stkp($id);
 		
 		$data['page'] = 'Edit non STKP';
+		$data['page_diklat'] = 'yes';
 		$this->load->view('diklat/index', $data);
 	}
 	

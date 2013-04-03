@@ -40,6 +40,8 @@ class pekerja extends Application {
 		$data['pegawai'] = $this->kepegawaian->get_data_pegawai($config['per_page'],$page);
 		$data['list_unit'] = $this->kepegawaian->get_list_unit();
 		$data['page'] = 'Pegawai';
+		$data['view_pekerja'] = 'class="this"';
+		$data['page_karyawan'] = 'yes';
 		#calling view
 		$this->load->view('kepegawaian/index',$data);
 	}
@@ -67,6 +69,7 @@ class pekerja extends Application {
 		$data['tanggal'] = $tanggal;
 		$data['type'] = 'ALL';
 		$data['view_pensiun'] = 'class="this"';
+		$data['page_karyawan'] = 'yes';
 		#calling view
 		$this->load->view('kepegawaian/index',$data);
 	}
@@ -91,6 +94,7 @@ class pekerja extends Application {
 		$data['pegawai'] = $this->kepegawaian->get_data_jenis_pegawai($config['per_page'],$page,$type);
 		$data['list_unit'] = $this->kepegawaian->get_list_unit();
 		$data['page'] = 'Pegawai';
+		$data['page_karyawan'] = 'yes';
 		
 		#calling view
 		if ($type=='all')
@@ -115,6 +119,7 @@ class pekerja extends Application {
 		//print_r($data['supervisor']);
 		$data['page'] = 'Data Supervisor';
 		$data['view_supervisor'] = 'class="this"';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -168,6 +173,7 @@ class pekerja extends Application {
 		$data['tanggal'] = $tanggal;
 		$data['type']	 = $type;
 		$data['page'] = 'Data Pensiun';
+		$data['page_karyawan'] = 'yes';
 		
 		#calling view
 		$this->load->view('kepegawaian/index',$data);
@@ -193,6 +199,7 @@ class pekerja extends Application {
 		$data['pegawai'] = $this->kepegawaian->get_data_unit_pegawai($config['per_page'], $page, $unit);
 		$data['list_unit'] = $this->kepegawaian->get_list_unit();
 		$data['page'] = 'Pegawai';
+		$data['page_karyawan'] = 'yes';
 		
 		#calling view
 		$this->load->view('kepegawaian/index',$data);
@@ -202,6 +209,7 @@ class pekerja extends Application {
 	{
 		$data['NIPP'] = $this->uri->segment(3);
 		$data['page'] = 'Delete Pegawai';
+		$data['page_karyawan'] = 'yes';
 		
 		$this->load->view('kepegawaian/index', $data);
 	}
@@ -226,6 +234,7 @@ class pekerja extends Application {
 		$data['pegawai'] = $this->kepegawaian->search_data_pegawai($config['per_page'], $page, $search_data);
 		$data['list_unit'] = $this->kepegawaian->get_list_unit();
 		$data['page'] = 'Search Result';
+		$data['page_karyawan'] = 'yes';
 		
 		#calling view
 		$this->load->view('kepegawaian/index', $data);
@@ -256,6 +265,7 @@ class pekerja extends Application {
 		
 		#count data
 		$data['jumlah_bahasa'] = $this->kepegawaian->count_result_bahasa($nipp);
+		$data['page_karyawan'] = 'yes';
 		
 		$this->load->view('kepegawaian/index',$data);
 		
@@ -268,30 +278,35 @@ class pekerja extends Application {
 		$data['list_jabatan'] = $this->kepegawaian->get_list_jabatan();
 		$data['view_add_pekerja'] = 'class="this"';
 		$data['page'] = 'Input Data Diri';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
 	public function add_pegawai_pasangan()
 	{
 		$data['page'] = 'Input Data Pasangan';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
 	public function add_pegawai_ortu()
 	{
 		$data['page'] = 'Input Data Ortu';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
 	public function add_pegawai_mertua()
 	{
 		$data['page'] = 'Input Data Mertua';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
 	public function add_bahasa_pegawai()
 	{
 		$data['page'] = 'Add Data Bahasa';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -318,6 +333,7 @@ class pekerja extends Application {
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data['page'] = 'Input Data Diri';
+			$data['page_karyawan'] = 'yes';
 			$this->load->view('kepegawaian/index',$data);
 		}
 		else
@@ -646,6 +662,7 @@ class pekerja extends Application {
 		$data['fisik'] = $this->kepegawaian->get_detail_pegawai_fisik($nipp);
 		$data['status_keluarga'] = $this->kepegawaian->get_detail_pegawai_status_keluarga($nipp);
 		$data['page'] = 'Edit Data Diri';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -653,6 +670,7 @@ class pekerja extends Application {
 	{
 		$data['alamat'] = $this->kepegawaian->get_detail_pegawai_alamat($nipp);
 		$data['page'] = 'Edit Data Alamat';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -660,6 +678,7 @@ class pekerja extends Application {
 	{
 		$data['pasangan'] = $this->kepegawaian->get_detail_pegawai_pasangan($nipp);
 		$data['page'] = 'Edit Data Pasangan';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -668,6 +687,7 @@ class pekerja extends Application {
 		$data['ayah'] = $this->kepegawaian->get_detail_pegawai_ayah($nipp);
 		$data['ibu'] = $this->kepegawaian->get_detail_pegawai_ibu($nipp);
 		$data['page'] = 'Edit Data Ortu';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -676,6 +696,7 @@ class pekerja extends Application {
 		$data['mertua_ayah'] = $this->kepegawaian->get_detail_pegawai_mert_ayah($nipp);
 		$data['mertua_ibu'] = $this->kepegawaian->get_detail_pegawai_mert_ibu($nipp);
 		$data['page'] = 'Edit Data Mertua';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -683,6 +704,7 @@ class pekerja extends Application {
 	{		
 		$data['anak'] = $this->kepegawaian->get_detail_pegawai_anak($nipp);
 		$data['page'] = 'Edit Data Anak';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -694,6 +716,7 @@ class pekerja extends Application {
 		$data['unit'] = $this->kepegawaian->get_detail_pegawai_unit($nipp);
 		$data['grade'] = $this->kepegawaian->get_detail_pegawai_grade($nipp);
 		$data['page'] = 'Edit Data Jabatan';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
@@ -702,12 +725,14 @@ class pekerja extends Application {
 		$data['bahasa'] = $this->kepegawaian->get_detail_pegawai_bahasa($nipp);
 		$data['pendidikan'] = $this->kepegawaian->get_detail_pegawai_pendidikan($nipp);
 		$data['page'] = 'Edit Data Pendidikan';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	
 	public function add_anak_pegawai($nipp)
 	{
 		$data['page'] = 'Add Data Anak';
+		$data['page_karyawan'] = 'yes';
 		$this->load->view('kepegawaian/index',$data);
 	}
 	

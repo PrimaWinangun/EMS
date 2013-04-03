@@ -40,7 +40,7 @@
     
     <div class="sidebarSep"></div> -->
     
-    <?php $this->load->view('diklat/template/navigation') ?>
+    <?php $this->load->view('template/navigation') ?>
 
 
 <!-- Right side -->
