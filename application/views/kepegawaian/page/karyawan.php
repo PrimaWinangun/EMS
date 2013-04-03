@@ -65,7 +65,8 @@
 				{
 					$number = 1;
 				} else {
-					$number = $this->uri->segment(3)+1;
+					if($this->uri->segment(2) == 'sort_unit_pegawai') {$number = $this->uri->segment(4)+1;} else {
+					$number = $this->uri->segment(3)+1;}
 				}
 				foreach ($pegawai as $row_pegawai) :
 				{ 

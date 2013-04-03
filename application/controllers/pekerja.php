@@ -84,7 +84,7 @@ class pekerja extends Application {
 		}
 		#pagination config
 		$config['base_url'] = base_url().'index.php/pekerja/sort_jenis_pegawai/'.$type.'/'; //set the base url for pagination
-		$config['total_rows'] = $this->kepegawaian->count_jenis_Pegawai($tahun); //total rows
+		$config['total_rows'] = $this->kepegawaian->count_jenis_Pegawai($type); //total rows
 		$config['per_page'] = 10; //the number of per page for pagination
 		$config['uri_segment'] = 4; //see from base_url. 3 for this case
 		$this->pagination->initialize($config);
@@ -159,7 +159,7 @@ class pekerja extends Application {
 			$limit = '54';
 		}
 		
-		print_r($type);print_r($jenis);print_r($limit);
+		//print_r($type);print_r($jenis);print_r($limit);
 		#pagination config
 		$config['base_url'] = base_url().'index.php/pekerja/sort_tahun_pensiun/'.$tanggal.'/'.$type.'/'; //set the base url for pagination
 		$config['total_rows'] = $this->kepegawaian->countPegawaiPensiun($tanggal, $jenis, $limit); //total rows
@@ -174,6 +174,7 @@ class pekerja extends Application {
 		$data['type']	 = $type;
 		$data['page'] = 'Data Pensiun';
 		$data['page_karyawan'] = 'yes';
+		$data['view_pensiun'] = 'class="this"';
 		
 		#calling view
 		$this->load->view('kepegawaian/index',$data);
