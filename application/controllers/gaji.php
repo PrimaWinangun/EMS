@@ -122,6 +122,15 @@ class Gaji extends Application {
 		$this->load->view('gaji/index',$data);	
 	}
 	
+	function submit_edit_penggajian($id)
+	{
+		$master_potongan = $this->m_gaji->ambil_master_potongan();
+		foreach ($master_potongan as $mp){}
+		$this->m_gaji->submit_edit_penggajian($id, $mp);
+		
+		redirect('gaji/edit_penggajian/'.$this->input->post('id_peg').'/'.$this->input->post('month').'/'.$this->input->post('year'));
+	}
+	
 	function edit_pot_pegawai($id_peg)
 	{
 		$data['showdata'] = $this->m_gaji->ambil_data_penggajian_id($this->uri->segment(6)); 
@@ -135,9 +144,10 @@ class Gaji extends Application {
 		$this->load->view('gaji/index',$data);
 	}
 	
-	function submit_edit_pot_pegawai()
+	function submit_edit_pot_pegawai($id)
 	{
-		
+		$this->m_gaji->submit_edit_pot_pegawai($id);
+		redirect('gaji/edit_penggajian/'.$this->input->post('id_peg').'/'.$this->input->post('month').'/'.$this->input->post('year'));
 	}
 	
 	function edit_pot_perusahaan($id_peg)
@@ -151,6 +161,12 @@ class Gaji extends Application {
 		$data['bulan'] = $this->namabulan($this->uri->segment(4));
 		
 		$this->load->view('gaji/index',$data);
+	}
+	
+	function submit_edit_pot_perusahaan($id)
+	{
+		$this->m_gaji->submit_edit_pot_perusahaan($id);
+		redirect('gaji/edit_penggajian/'.$this->input->post('id_peg').'/'.$this->input->post('month').'/'.$this->input->post('year'));
 	}
 	
 	function view_penggajian_list()
@@ -171,6 +187,7 @@ class Gaji extends Application {
 		$gaji_temp = $this->m_gaji->ambil_data_penggajian($unit,$month,$year);
 		$this->m_gaji->insert_gaji_sementara($gaji_temp);
 		$data['showdata'] = $this->m_gaji->get_gaji();
+		$data['view_gaji_pegawai'] = 'class="this"';
 		$this->m_gaji->drop_table();
 		
 		//print_r($data['showdata']);
@@ -195,6 +212,8 @@ class Gaji extends Application {
 		} else {
 			$this->m_gaji->input_data_gaji($id_peg, $mp);
 		}
+		
+		redirect('gaji/gaji_pegawai');
 	}
 	
 	function terbilang($angka) {
