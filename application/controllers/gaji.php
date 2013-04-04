@@ -98,6 +98,9 @@ class Gaji extends Application {
 		$data['pot_pegawai'] = $this->m_gaji->ambil_data_pot_pegawai_id($row['pgj_id_peg']); 
 		$data['pot_perusahaan'] = $this->m_gaji->ambil_data_pot_perusahaan_id($row['pgj_id_peg']); 
 		$pot_pegawai = $data['pot_pegawai'];
+		foreach ($data['pot_perusahaan'] as $pr){
+			$data['pot_per'] = $pr['pot_per_as_jiwa'] + $pr['pot_per_jk'] + $pr['pot_per_siharta'] + $pr['pot_per_other'] + $pr['pot_per_jht'] + $pr['pot_per_tht'] + $pr['pot_per_pensiun'];
+		}
 		foreach ($pot_pegawai as $pp){
 			$data['pot_peg'] = $pp['pot_peg_siperkasa'] + $pp['pot_peg_kokarga'] + $pp['pot_peg_kosigarden'] + $pp['pot_peg_flexy'] + $pp['pot_peg_other'] + $pp['pot_peg_ggc'] + $pp['pot_peg_jht'] + $pp['pot_peg_tht'] + $pp['pot_peg_pensiun'];
 		}

@@ -17,6 +17,7 @@
 				<tr><td>Koreksi</td><td>:</td><td><?php //echo $row['pgj_koreksi'];?></td><td> </td><td></td><td></td><tr>
 				<tr><td>Insentive</td><td>:</td><td><?php echo $row['pgj_insentive'];?></td><td> </td><td></td><td></td><tr>
 				<tr><td>Potongan Pegawai</td><td>:</td><td><?php echo round($pot_peg,0);?></td><td> </td><td></td><td></td><tr>
+				<tr><td>Potongan Perusahaan</td><td>:</td><td><?php echo round($pot_per,0);?></td><td> </td><td></td><td></td><tr>
 				<tr><td colspan="6"> <br></td><tr>
 				<tr><td>Pembulatan</td><td>:</td><td><?php echo $pembulatan;?></td><td> </td><td></td><td></td><tr>
 				<tr><td>Penerimaan</td><td>:</td><td><?php echo $gaji_nett;?></td><td> </td><td></td><td></td><tr>
